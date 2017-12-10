@@ -12,6 +12,19 @@
 		<!-- Theme used for syntax highlighting of code -->
 		<link rel="stylesheet" href="lib/css/zenburn.css">
 
+		<script type="text/x-mathjax-config"> MathJax.Hub.Config({ TeX: { equationNumbers: { autoNumber: "all" } } }); </script>
+		<script type="text/x-mathjax-config">
+		 MathJax.Hub.Config({
+		   tex2jax: {
+		     inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+		     processEscapes: true
+		   }
+		 });
+		</script>
+		<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+
+
+
 		<!-- Printing and PDF exports -->
 		<script>
 			var link = document.createElement( 'link' );
@@ -45,15 +58,14 @@
 
 		<script src="lib/js/head.min.js"></script>
 		<script src="js/reveal.js"></script>
-
 		<script>
 			// More info about config & dependencies:
 			// - https://github.com/hakimel/reveal.js#configuration
 			// - https://github.com/hakimel/reveal.js#dependencies
 			Reveal.initialize({
 				math: {
-					mathjax: 'http://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js' // online
-					// mathjax: 'node_modules/mathjax/MathJax.js' //offline-local
+					// mathjax: 'http://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js' // online
+					mathjax: 'node_modules/mathjax/MathJax.js' //offline-local
 				},
 				dependencies: [
 					{ src: 'plugin/markdown/marked.js' },
