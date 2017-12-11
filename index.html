@@ -50,26 +50,35 @@
 		    </section>
 		    <section>
 		    	<h3><b>Count-based methods</b></h3>
-		    	<p>Previously represented by simplified assumptions of sparse vectors. </p>
+		    	<p style="text-align: justify">Previously represented by simplified assumptions of sparse vectors. These methods represent text as a <b>bag of words</b> where a document is described by counting the number of co-occurences of words across documents.</p>
 		    	<aside class="notes">
 		    		Spare vectors are where you use one-hot encoding to create a vector for each word in the vocabularly. In the picture in the slide, 5 vectors would be computed, with the dimensions of the vector equal to the size of the vocabulary. 1 represents the index that stands for the word, and 0 otherwise. 
 		    	</aside>	
 		    	<img src="resources/word2vec-one-hot.png">
-		    	<p>These methods represent text as a <b>bag of words</b> where a document is described by counting the number of co-occurences of words across documents.</p>
+		    	
 		    	<aside class="notes">
 		    		Documents are units of texts such as web pages, newspaper articles et cetera. In NLP speak, a collection of documents forms a corpus.
 		    	</aside>	
 		    </section>
 		    <section>
 		    	<h4><b>Latent semantic analysis</b></h4>
-		    	<p>(Deerwester et al., 1990)</p>
-		    	<video autoplay loop controls style="border: 2px solid black;">
+		    	<p style="text-align: justify; font-size: 70%">Term document matrix is used where rows are unique words and columns each document. TF-IDF transformation used to weight the importance of each word. SVD factorization used to group documents using similar words. Detects <b>latent semantic components</b> between documents (Deerwester et al., 1990).</p>
+		    	<aside class="notes">Corresponds to the frequency of a term within a document divided by its frequency in the entire corpus. This downweights common, conventional stop words such as "the", "a", "it" which contribute less discriminate power to a document than terms which are document (or topic) specific.</aside>
+		    	<video autoplay loop controls style="border: 3px solid black;" height="400px">
 		    		<source data-src="resources/Topic_model_scheme.webm" type="video/webm"></source>
-		    	</video>	
-		    </section>	
+		    	</video>
+		    	<p style="text-align: justify; font-size: 70%"></p>
+		    	<aside class="notes">Factorize matrix with singular value decomposition which identifies the dimensions across which most of the variance (or co-occurence) in the space of tf-idf is captured. Means that vectors of words that co-occur in certain documents, or exhibit similar variane across documents, end up closer together in this new vector space called a topic space.</aside>
+		    </section>
+		    <section>
+		    	<h4><b>Shortcomings</b></h4>
+		    	<p style="text-align: justify;">Co-occurence encodes shallow topical similarly.</p> 
+		    	<img src="resources/lsa_vs_embeds.png">
+				<p style="text-align: justify;">Levy & Goldberg (2014) finds "hogwarts" close to Harry Potter terms, as opposed to terms recognised as functionally or conceptually similar - i.e. other elite educational institutions.</p>
+		    </section>
 		 	<section>
 		 		<h3><b>Prediction-based methods</b></h3>
-		 		<p></p>
+		 		<p>The distributional hypothesis: </p>
 		 	</section>
 		    <section>
 		      <p>A word embedding $W : \textit{words} \rightarrow \mathbb{R}^n$</p>
