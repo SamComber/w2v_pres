@@ -77,7 +77,9 @@
 		    </section>
 		 	<section>
 		 		<h3><b>Prediction-based methods</b></h3>
-		 		<p>Purport Baroni et al.'s (2014) distributional hypothesis: "words that appear in the same contexts share semantic meaning." Instead of co-occurence counts, predictive methods take raw text as input and </p>
+		 		<p style="text-align: justify;">Purport Baroni et al.'s (2014) distributional hypothesis: "words that appear in the same contexts share semantic meaning."</p> 
+
+		 		<p style="text-align: justify;">Instead of co-occurence counts, predictive methods take raw, tokenised text as input and learn word vectors by predicting its surrounding context.</p>
 		 	</section>
 		    <section>
 		       <p>Word2vec learns a distributed representation of each word in a vocabulary. A word embedding $W : \textit{words} \rightarrow \mathbb{R}^n$</p>
@@ -105,7 +107,7 @@
 		    		<li>The weights matrices $WI$ and $WO$ are $8 \times 3$ and $3 \times 8$, respectively.</li>
 		    		<li>Matrices are randomly initialised to small random values.</li>		    	
 		    	</ol>
-		    	<img width="500px" height="300px"src="resources/nn_w2v.png">
+		    	<img width="500px" height="300px" src="resources/nn_w2v.png">
 		    </section>
 		    <section>
 		
@@ -161,9 +163,14 @@
 				<p style="text-align:justify;">Given our target vector $[0,0,0,1,0,0,0,0]^t$. The error vector is computed by subtracting the probability vector from the target vector. Error is used to update the matrices for $WO$ and $WI$ using backpropagation.</p>
 				<p style="text-align:justify;">Training proceeds iteratively by presenting different word pairs from the corpus.</p>
 			</section>
-	
-			<!-- SECTION HERE TO ROUND UP TECHNICAL DISCUSSION -->
 
+			<section>
+				<h3>Summary</h3>
+				<p style="text-align: justify;">After training terminates, our resulting word vectors are just taken from $WI$ which have been updated by backpropagation.</p> 
+				<img src="resources/simplistic-term-vector-mode.gif">
+				<p style="text-align: justify;">The vectors of words that appear in similar contexts will be similar in terms of distance (cosine, euclidean).</p>
+			</section>
+	
 			<section>
 			  <aside class="notes">Two flavours: tensorflow and gensim. Tensorflow generally requires a lot more boilerplate code but </aside>
 			  <p>Gensim: "<i>topic modelling for humans</i>"</p>
@@ -210,20 +217,22 @@
 		    </section>
 
 		    <section>
-		    	<h3>Application</h3>
-		    	<p>Spotify abstract the ideas behind word2vec by treating songs as words, and other songs in a playlist as their surrounding "context window".</p>
+		    	<h3>Application (1)</h3>
+		    	<p style="text-align:justify;">Spotify abstract the ideas behind word2vec by treating songs as words, and other songs in a playlist as their surrounding "context window".</p>
 		    	<img src="resources/spotify-logo2.jpg">
 
-		    	<p>In order to recommend songs to a user, Spotify examines a neighbourhood of 'song embeddings' of songs the user already likes!</p>
+		    	<p style="text-align:justify;">In order to recommend songs to a user, Spotify examines a neighbourhood of 'song embeddings' of songs the user already likes!</p>
 		    </section>
 
 		    <section> 
-
-		    	<img src="resources/t-sne.png" alt="">
+		    	<h3>Application (2)</h3>
+		    	<p style="font-size:70%;">Machine translation. Words from two different languages can be embedded in a single, shared space (Socher et al. 2013).</p>
+		    	<img width="500px" height="300px" src="resources/t-sne.png" alt="">
+		    	<p style="font-size:70%;">In light of our discussion, we observed word vectors pull similar words closer together, so using a few translation as anchor points, a mapping between English and Mandarin words can be created.</p>
 		    </section>
 
 		    <section>
-		    	<p>Thanks!</p>
+		    	<p>Thanks for learning machine learning!</p>
 		    </section>
 
 		  </div>
