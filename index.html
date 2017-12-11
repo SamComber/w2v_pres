@@ -72,9 +72,8 @@
 		    </section>
 		    <section>
 		    	<h4><b>Shortcomings</b></h4>
-		    	<p style="text-align: justify;">Co-occurence encodes shallow topical similarity.</p> 
+		    	<p style="text-align: justify;">Co-occurence encodes shallow topical similarity. Levy & Goldberg (2014) finds "hogwarts" close to Harry Potter terms, as opposed to terms recognised as functionally or conceptually similar - i.e. other elite educational institutions.</p> 
 		    	<img src="resources/lsa_vs_embeds.png">
-				<p style="text-align: justify;">Levy & Goldberg (2014) finds "hogwarts" close to Harry Potter terms, as opposed to terms recognised as functionally or conceptually similar - i.e. other elite educational institutions.</p>
 		    </section>
 		 	<section>
 		 		<h3><b>Prediction-based methods</b></h3>
@@ -92,13 +91,48 @@
 		    <section>
 		    	<p>Word2vec uses a shallow neural network with a <b>single hidden layer</b>. Let's look at a simplified example that trains word2vec on the following sentences:</p>
 
-		    	<p>"the dog saw a cat"</p>
-		    	<p>"the dog chased the cat"</p>
-		    	<p>"the cat climbed a tree"</p>
+		    	<p><i>"the dog saw a cat"</i></p>
+		    	<p><i>"the dog chased the cat"</i></p>
+		    	<p><i>"the cat climbed a tree"</i></p>
 
-		    	<p>Our corpus contains eight unique words. Suppose we want to create word vectors with 3 dimensions...</p>
+		    	<p>Our corpus contains eight unique words. Suppose we want to learn word vectors with 3 dimensions...</p>
+		    </section>
+		    <section>
+		    	<h3>Neural Net Architecture</h3>
+		    	<ol style="text-align: left; font-size: 70%;">
+					<li>The input and output layer have as many neurons as there are words in the vocabulary (8).</li>
+		    		<li>The hidden layer has the dimensionality of the resulting word vectors (3).</li>
+		    		<li>The weights matrices $WI$ and $WO$ are $8 \times 3$ and $3 \times 8$, respectively.</li>
+		    		<li>Matrices are randomly initialised to small random values.</li>		    	
+		    	</ol>
+		    	<img width="500px" height="300px"src="resources/nn_w2v.png">
+		    </section>
+		    <section>
+		
+		    	<p style="text-align:left;">In our case, $WI$ and $WO$ look like...</p>
+		    	<p style="font-size: 70%;">$WI = \begin{bmatrix}
+					-0.09 & 0.03 & 0.72 \\ 
+					0.34 & 0.98 & 0.34 \\ 
+					0.66 & -0.11 & -0.93\\ 
+					-0.33 & -0.35 & -0.65 \\ 
+					0.34 & 0.89 & 0.11 \\ 
+					0.88 & 0.76 & 0.23\\ 
+					-0.84 & -0.29 & 0.87 \\ 
+					0.11 & -0.76 & 0.33
+					\end{bmatrix}$</p>
+				<p style="font-size: 70%;">$WO = 
+					\begin{bmatrix}
+					0.33 & 0.76  & 0.85 & -0.99 & -0.44  &  0.39 & 0.38 &  0.11 \\ 
+					0.17 & 0.93 & 0.65 & -0.45 & 0.12 & -0.09 & 0.56 & 0.13\\ 
+					-0.08 & 0.93 & 0.74 & 0.85  & -0.34 & -0.78 & 0.33 &  0.71
+					\end{bmatrix}$</p>
 
 		    </section>
+			<section>
+				<h3>Training</h3>
+				<p>Remember, we want to learn the relationship between </p>
+			</section>
+
 		    <section>
 		    	<h3><b>Applications</b></h3>
 		    	<img src="resources/t-sne.png" alt="">
@@ -108,6 +142,8 @@
 			  <p>Gensim library: ``<i>topic modelling for humans</i>''</p>
 			  <pre><code data-trim>
 			  import gensim
+
+			  sentences = ["the dog saw a cat", "the dog chased the cat", "the cat climbed a tree"]
 
 			  gensim.word2vec()
 			  </code></pre>
