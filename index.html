@@ -72,18 +72,32 @@
 		    </section>
 		    <section>
 		    	<h4><b>Shortcomings</b></h4>
-		    	<p style="text-align: justify;">Co-occurence encodes shallow topical similarly.</p> 
+		    	<p style="text-align: justify;">Co-occurence encodes shallow topical similarity.</p> 
 		    	<img src="resources/lsa_vs_embeds.png">
 				<p style="text-align: justify;">Levy & Goldberg (2014) finds "hogwarts" close to Harry Potter terms, as opposed to terms recognised as functionally or conceptually similar - i.e. other elite educational institutions.</p>
 		    </section>
 		 	<section>
 		 		<h3><b>Prediction-based methods</b></h3>
-		 		<p>The distributional hypothesis: </p>
+		 		<p>Purport Baroni et al.'s (2014) distributional hypothesis: "words that appear in the same contexts share semantic meaning." Instead of co-occurence counts, predictive methods take raw text as input and </p>
 		 	</section>
 		    <section>
-		      <p>A word embedding $W : \textit{words} \rightarrow \mathbb{R}^n$</p>
-  			   <p>$W(``king'') = (0.2, -0.4, 0.7, . . . )$</p>
-  			   <p>$W(``queen'') = (0.2, -0.4, 0.7, . . . )$</p>
+		       <p>Word2vec learns a distributed representation of each word in a vocabulary. A word embedding $W : \textit{words} \rightarrow \mathbb{R}^n$</p>
+  			   <p>$W("king") = (0.2, -0.4, 0.7, . . . )$</p>
+  			   <p>$W("queen") = (0.2, -0.4, 0.7, . . . )$</p>
+  			    <p style="text-align: justify;">Dimensions of vector might be labelled by <b>royalty, masculinity, age </b> with each contributing to the abstract 'meaning' of a word in the vector space. Representation of each word is spread across every element of the vector.</p>
+		    </section>
+		    <section>
+		    	<h3>How?</h3>
+		    </section>
+		    <section>
+		    	<p>Word2vec uses a shallow neural network with a <b>single hidden layer</b>. Let's look at a simplified example that trains word2vec on the following sentences:</p>
+
+		    	<p>"the dog saw a cat"</p>
+		    	<p>"the dog chased the cat"</p>
+		    	<p>"the cat climbed a tree"</p>
+
+		    	<p>Our corpus contains eight unique words. Suppose we want to create word vectors with 3 dimensions...</p>
+
 		    </section>
 		    <section>
 		    	<h3><b>Applications</b></h3>
