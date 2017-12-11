@@ -129,25 +129,91 @@
 
 		    </section>
 			<section>
-				<h3>Training</h3>
-				<p>Remember, we want to learn the relationship between </p>
+				<h3><b>Reminder...</b></h3>
+				<p style="text-align:justify;">Our objective is to learn word relationships (between "cat" and "climbed", for example). Training proceeds by taking a one-hot encoded vector for each word. </p>
+		    	<ul style="text-align: left;">
+		    		<li>Input vector for cat is $[0,1,0,0,0,0,0,0]^t$</li>
+		    		<li>Target vector for climbed is $[0,0,0,1,0,0,0,0]^t$</li>
+		    	</ul>
+				<aside class="notes">In word embedding terminology, the word cat is referred to as the context word, and the world climbed is referred as the target word.</aside>
 			</section>
+			<section>
+				<h3>Learning (1)</h3>
+				<p style="text-align:justify;">Since our input vectors are one-hot, the matrix multiplication by weight matrix $WI$ amounts to simply copying the input word vector to the hidden layer ($H^t$).</p>
+				<p>$[0,1,0,0,0,0,0,0]^t \times WI = [0.34 , 0.98 , 0.34]$ </p>
+				<p>$H^t = [0.34 , 0.98 , 0.34]$</p>
+			</section>
+			<section>
+				<h3>Learning (2)</h3>
+				<p style="text-align:justify;">Carrying out a similar matrix multiplication between the hidden layer ($H^t$) and $WO$ we find...</p>
+				<p>$H^t \times WO = $</p>
+				<p>This creates what is known as the <b>activation vector</b>.</p>
+
+			</section>
+			<section>
+				<h3>Learning (3)</h3>
+				<p style="text-align:justify;">Since our objective is to produce probabilities for words, we need the sum of neuron outputs to add to one. So, we convert the activation values of the output layer neurons to probabilities using the <b>softmax function</b>.</p>
+				<p>$$P(word_k|word_{context}) = \frac{exp(activation(k))}{\sum\limits_{n=1}^V exp(activation(n))}$$</p>
+			</section>
+			<section>
+				<h3>Learning (4)</h3>
+				<p style="text-align:justify;">So, applying the softmax function, the probabilities for eight words in our "corpus" are: $[]$. The probability in bold represents our target word, "climbed".</p>
+				<p style="text-align:justify;">Given our target vector $[0,0,0,1,0,0,0,0]^t$. The error vector is computed by subtracting the probability vector from the target vector. Error is used to update the matrices for $WO$ and $WI$ using backpropagation.</p>
+				<p style="text-align:justify;">Training proceeds iteratively by presenting different word pairs from the corpus.</p>
+			</section>
+			<section>
+				<p></p>
+
+
+			</section>
+
+			<section>
+			  <aside class="notes">Two flavours: tensorflow and gensim. Tensorflow generally requires a lot more boilerplate code but </aside>
+			  <p>Gensim: "<i>topic modelling for humans</i>"</p>
+			  <pre><code data-trim>
+				from gensim.models import Word2Vec
+
+				sentences = [["the", "dog", "saw", "a", "cat"], 
+				         ["the", "dog", "chased" ,"the" ,"cat"],  
+				         ["the", "cat", "climbed", "a", "tree"]]
+
+				model = Word2Vec(sentences, min_count=0, window=1, size=3) 
+				            
+				model.wv.similarity('cat', 'chased')
+
+				## Out[45]: 0.90155835391663142
+
+				model['cat']
+
+				## Out[48]: array([ 0.06525704,  0.02372613,  0.04815513], dtype=float32)
+			  </code></pre>
+			</section>
+			<section>
+			  <p>Visualise learnt embeddings using PCA</p>
+			  <pre style="font-size:30%;"><code data-trim>
+				from sklearn.decomposition import PCA
+				from matplotlib import pyplot
+
+				X = model[model.wv.vocab]
+
+				result = PCA(n_components=2).fit_transform(X)
+
+				# create a scatter plot of the projection
+				pyplot.scatter(result[:, 0], result[:, 1])
+				words = list(model.wv.vocab)
+				for i, word in enumerate(words):
+				    pyplot.annotate(word, xy=(result[i, 0], result[i, 1]))
+				pyplot.show()
+			  </code></pre>
+			  <img  src="resources/pca.png">
+			</section>
+
 
 		    <section>
 		    	<h3><b>Applications</b></h3>
 		    	<img src="resources/t-sne.png" alt="">
 		    </section>
-			<section>
-			  <aside class="notes">Two flavours: tensorflow and gensim. Tensorflow generally requires a lot more boilerplate code but </aside>
-			  <p>Gensim library: ``<i>topic modelling for humans</i>''</p>
-			  <pre><code data-trim>
-			  import gensim
 
-			  sentences = ["the dog saw a cat", "the dog chased the cat", "the cat climbed a tree"]
-
-			  gensim.word2vec()
-			  </code></pre>
-			</section>
 		  </div>
 		</div>
 
