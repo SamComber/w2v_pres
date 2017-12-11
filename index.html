@@ -45,13 +45,28 @@
 		    <section>
 		    	A <b>word</b> as the basic unit of discerete data, defined as an item from a vocabulary indexed by $1, . . . , V$.
 		    	<aside class="notes">
-					Compared to image data which can analysed as a pixel grid or a matrix of RBG, or continuous data, how can be evaluate text?
+					Compared to image data which can analysed as a pixel grid or a matrix of RBG, or continuous data, how can we evaluate text? Well, the outcome of this 20 minute talk is hopefully to demystify how one might use text data in machine learning models or otherwise text mining applications they might have in their work.
 				</aside>
 		    </section>
 		    <section>
 		    	<h3><b>Count-based methods</b></h3>
-		    	<p></p>
+		    	<p>Previously represented by simplified assumptions of sparse vectors. </p>
+		    	<aside class="notes">
+		    		Spare vectors are where you use one-hot encoding to create a vector for each word in the vocabularly. In the picture in the slide, 5 vectors would be computed, with the dimensions of the vector equal to the size of the vocabulary. 1 represents the index that stands for the word, and 0 otherwise. 
+		    	</aside>	
+		    	<img src="resources/word2vec-one-hot.png">
+		    	<p>These methods represent text as a <b>bag of words</b> where a document is described by counting the number of co-occurences of words across documents.</p>
+		    	<aside class="notes">
+		    		Documents are units of texts such as web pages, newspaper articles et cetera. In NLP speak, a collection of documents forms a corpus.
+		    	</aside>	
 		    </section>
+		    <section>
+		    	<h4><b>Latent semantic analysis</b></h4>
+		    	<p>(Deerwester et al., 1990)</p>
+		    	<video autoplay loop>
+		    		<source data-src="resources/Topic_model_scheme.webm" type="video/webm"></source>
+		    	</video>	
+		    </section>	
 		 	<section>
 		 		<h3><b>Prediction-based methods</b></h3>
 		 		<p></p>
