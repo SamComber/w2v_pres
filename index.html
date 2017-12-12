@@ -91,13 +91,13 @@
 		    	<h3>How?</h3>
 		    </section>
 		    <section>
-		    	<p>Word2vec uses a shallow neural network with a <b>single hidden layer</b>. Let's look at a simplified example that trains word2vec on the following sentences:</p>
+		    	<p>Word2vec uses a shallow neural network with a <b>single hidden layer</b>. Let's look at a simplified, trivial example that trains word2vec on the following sentences:</p>
 
 		    	<p><i>"the dog saw a cat"</i></p>
 		    	<p><i>"the dog chased the cat"</i></p>
 		    	<p><i>"the cat climbed a tree"</i></p>
 
-		    	<p>Our corpus contains eight unique words. Suppose we want to learn word vectors with 3 dimensions...</p>
+		    	<p>Our corpus contains eight unique words. Suppose we want to learn 3 dimensional word vectors for the relationship between "cat" and "climbed"</p>
 		    </section>
 		    <section>
 		    	<h3>Neural Net Architecture</h3>
@@ -148,7 +148,7 @@
 			<section>
 				<h3>Learning (2)</h3>
 				<p style="text-align:justify;">Carrying out a similar matrix multiplication between the hidden layer ($H^t$) and $WO$ we find...</p>
-				<p>$H^t \times WO = $</p>
+				<p>$H^t \times WO = [0.25, 1.49, 1.18, -0.49, -0.15, -0.22, 0.79, 0.41]$</p>
 				<p>This creates what is known as the <b>activation vector</b>.</p>
 
 			</section>
@@ -158,17 +158,20 @@
 				<p>$$P(word_k|word_{context}) = \frac{exp(activation(k))}{\sum\limits_{n=1}^V exp(activation(n))}$$</p>
 			</section>
 			<section>
-				<h3>Learning (4)</h3>
-				<p style="text-align:justify;">So, applying the softmax function, the probabilities for eight words in our "corpus" are: $[]$. The probability in bold represents our target word, "climbed".</p>
-				<p style="text-align:justify;">Given our target vector $[0,0,0,1,0,0,0,0]^t$. The error vector is computed by subtracting the probability vector from the target vector. Error is used to update the matrices for $WO$ and $WI$ using backpropagation.</p>
+				<h3 style="margin-top:-50px;">Learning (4)</h3>
+				<p style="text-align:justify;">So, applying the softmax function, the probabilities for eight words in our "corpus" are:</p>
+				<p style="text-align:justify;">$[0.09, 0.30, 0.22, \textbf{0.04}, 0.06, 0.05,0.15, 0.10]$.</p>
+				<p style="text-align:justify;">The probability in bold represents our target word, "climbed". Given our target vector $[0,0,0,1,0,0,0,0]^t$. The error vector is computed by subtracting the probability vector from the target vector. Error is used to update the matrices for $WO$ and $WI$ using backpropagation.</p>
 				<p style="text-align:justify;">Training proceeds iteratively by presenting different word pairs from the corpus.</p>
 			</section>
 
 			<section>
-				<h3>Summary</h3>
-				<p style="text-align: justify;">After training terminates, our resulting word vectors are just taken from $WI$ which have been updated by backpropagation.</p> 
-				<img src="resources/simplistic-term-vector-mode.gif">
-				<p style="text-align: justify;">The vectors of words that appear in similar contexts will be similar in terms of distance (cosine, euclidean).</p>
+				<h3 style="margin-top:-50px;">Summary</h3>
+				<p style="text-align: justify;">After training, word vectors are copied from $WI$, which have been updated by backpropagation. Vectors of words appearing in similar contexts will be closer in terms of distance (cosine, euclidean).</p> 
+				<img width="25%" height="25%" src="resources/simplistic-term-vector-mode.png">
+				<p style="text-align: justify;">Generally, word2vec comes in two flavours: CBOW and skip-gram.</p>
+				<aside class="notes">CBOW context is represented by multiple words for a given target word. Skip-gram feeds a target word to the input layer, but the output layer of the neural network is replicated multiple times to accomodate the chosen number of context words. </aside>
+
 			</section>
 	
 			<section>
