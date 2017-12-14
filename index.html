@@ -43,14 +43,14 @@
 		      <img src="resources/w2v.png" alt="">
 		    </section>
 		    <section>
-		    	A <b>word</b> as the basic unit of discerete data, defined as an item from a vocabulary indexed by $1, . . . , V$.
+		    	A <b>word</b> as the basic unit of discrete data, defined as an item from a vocabulary indexed by $1, . . . , V$.
 		    	<aside class="notes">
 					Compared to image data which can analysed as a pixel grid or a matrix of RBG, or continuous data, how can we evaluate text? Well, the outcome of this 20 minute talk is hopefully to demystify how one might use text data in machine learning models or otherwise text mining applications they might have in their work.
 				</aside>
 		    </section>
 		    <section>
 		    	<h3><b>Count-based methods</b></h3>
-		    	<p style="text-align: justify">Previously represented by simplified assumptions of sparse vectors. These methods represent text as a <b>bag of words</b> where a document is described by counting the number of co-occurences of words across documents.</p>
+		    	<p style="text-align: justify">Previously represented by simplified assumptions of sparse vectors. These methods represent text as a <b>bag of words</b> where a document is described by counting the number of co-occurrences of words across documents.</p>
 		    	<aside class="notes">
 		    		Spare vectors are where you use one-hot encoding to create a vector for each word in the vocabularly. In the picture in the slide, 5 vectors would be computed, with the dimensions of the vector equal to the size of the vocabulary. 1 represents the index that stands for the word, and 0 otherwise. 
 		    	</aside>	
@@ -68,18 +68,18 @@
 		    		<source data-src="resources/Topic_model_scheme.webm" type="video/webm"></source>
 		    	</video>
 		    	<p style="text-align: justify; font-size: 70%"></p>
-		    	<aside class="notes">Factorize matrix with singular value decomposition which identifies the dimensions across which most of the variance (or co-occurence) in the space of tf-idf is captured. Means that vectors of words that co-occur in certain documents, or exhibit similar variane across documents, end up closer together in this new vector space called a topic space.</aside>
+		    	<aside class="notes">Factorize matrix with singular value decomposition which identifies the dimensions across which most of the variance (or co-occurrence) in the space of tf-idf is captured. Means that vectors of words that co-occur in certain documents, or exhibit similar variane across documents, end up closer together in this new vector space called a topic space.</aside>
 		    </section>
 		    <section>
 		    	<h4><b>Shortcomings</b></h4>
-		    	<p style="text-align: justify;">Co-occurence encodes shallow topical similarity. Levy & Goldberg (2014) finds "hogwarts" close to Harry Potter terms, as opposed to terms recognised as functionally or conceptually similar - i.e. other elite educational institutions.</p> 
+		    	<p style="text-align: justify;">Co-occurrence encodes shallow topical similarity. Levy & Goldberg (2014) finds "hogwarts" close to Harry Potter terms, as opposed to terms recognised as functionally or conceptually similar - i.e. other elite educational institutions.</p> 
 		    	<img src="resources/lsa_vs_embeds.png">
 		    </section>
 		 	<section>
 		 		<h3><b>Prediction-based methods</b></h3>
 		 		<p style="text-align: justify;">Purport Baroni et al.'s (2014) distributional hypothesis: "words that appear in the same contexts share semantic meaning."</p> 
 
-		 		<p style="text-align: justify;">Instead of co-occurence counts, predictive methods take raw, tokenised text as input and learn word vectors by predicting its surrounding context.</p>
+		 		<p style="text-align: justify;">Instead of co-occurrence counts, predictive methods take raw, tokenised text as input and learn word vectors by predicting its surrounding context.</p>
 		 	</section>
 		    <section>
 		       <p>Word2vec learns a distributed representation of each word in a vocabulary. A word embedding $W : \textit{words} \rightarrow \mathbb{R}^n$</p>
